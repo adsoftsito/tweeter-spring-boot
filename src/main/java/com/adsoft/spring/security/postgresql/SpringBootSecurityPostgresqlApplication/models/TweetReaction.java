@@ -57,21 +57,7 @@ public class TweetReaction {
     this.id = id;
    }
 
-    /*   @Id
-    @EmbeddedId
-    LikeKey idKey;
-
-
-    public LikeKey getIdKey() {
-        return idKey;
-    }
-
-    public void setIdKey(LikeKey idKey) {
-        this.idKey = idKey;
-    }
-*/
-
-
+  
     @ManyToOne
     @MapsId("userId")
     @JoinColumn(name = "user_id")
