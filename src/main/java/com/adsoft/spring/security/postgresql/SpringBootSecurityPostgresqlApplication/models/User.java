@@ -92,4 +92,17 @@ public class User {
     this.roles = roles;
   }
 
+
+  @OneToMany(mappedBy = "user")
+  Set<TweetReaction> likes;
+
+  public Set<TweetReaction> getLikes() {
+    return likes;
+  }
+
+  public void setLikes(Set<TweetReaction> likes) {
+    this.likes = likes;
+  }
+
+  
 }

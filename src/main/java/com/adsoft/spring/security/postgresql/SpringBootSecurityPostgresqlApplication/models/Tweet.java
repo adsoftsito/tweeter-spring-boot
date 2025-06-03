@@ -12,7 +12,7 @@ import jakarta.validation.constraints.Size;
 
 public class Tweet {
 
-    @Id
+  @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
@@ -20,6 +20,20 @@ public class Tweet {
   @NotBlank
   @Size(max = 140)
   private String tweet;
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "posted_by", referencedColumnName = "id")
+  private User postedBy;
+
+
+
+  public User getPostedBy() {
+    return postedBy;
+  }
+
+  public void setPostedBy(User postedBy) {
+    this.postedBy = postedBy;
+  }
 
   public Tweet() {
   }
@@ -43,9 +57,22 @@ public class Tweet {
     return tweet;
 }
 
+
   public void setTweet(String tweet) {
     this.tweet = tweet;
   }
+
+  @OneToMany(mappedBy = "tweet")
+  Set<TweetReaction> likes;
+
+  public Set<TweetReaction> getLikes() {
+    return likes;
+  }
+
+  public void setLikes(Set<TweetReaction> likes) {
+    this.likes = likes;
+  }
+
 
 
 }
